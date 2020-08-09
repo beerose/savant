@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "svelte": "^3.24.0"
+  },
+  "devDependencies": {
+    "@snowpack/app-scripts-svelte": "^1.8.3",
+    "@snowpack/plugin-run-script": "^2.0.4",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/svelte": "^3.0.0",
+    "@tsconfig/svelte": "^1.0.3",
+    "@types/jest": "^26.0.4",
+    "jest": "^26.2.2",
+    "snowpack": "^2.7.7",
+    "svelte-check": "^0.1.59",
+    "svelte-preprocess": "^4.0.8",
+    "typescript": "^3.9.7"
+  }
+}
