@@ -1,26 +1,74 @@
 {
+  "name": "savant",
+  "version": "1.0.0",
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build",
-    "test": "jest"
+    "start": "blitz start",
+    "studio": "blitz db studio",
+    "build": "blitz build",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "prisma": {
+    "schema": "db/schema.prisma"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc && lint-staged && pretty-quick --staged",
+      "pre-push": "yarn lint && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
   },
   "dependencies": {
-    "svelte": "^3.24.0"
+    "@prisma/cli": "2.x",
+    "@prisma/client": "2.x",
+    "blitz": "latest",
+    "react": "0.0.0-experimental-7f28234f8",
+    "react-dom": "0.0.0-experimental-7f28234f8",
+    "react-error-boundary": "2.3.2",
+    "secure-password": "4.0.0",
+    "zod": "1.x",
+    "final-form": "4.x",
+    "react-final-form": "6.5.1"
   },
   "devDependencies": {
-    "@snowpack/app-scripts-svelte": "^1.8.3",
-    "@snowpack/plugin-run-script": "^2.0.4",
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/svelte": "^3.0.0",
-    "@tsconfig/svelte": "^1.0.3",
-    "@types/jest": "^26.0.4",
-    "jest": "^26.2.2",
-    "postcss-cli": "^7.1.1",
-    "snowpack": "^2.7.7",
-    "svelte-check": "^1.0.0",
-    "svelte-preprocess": "^4.0.0",
-    "tailwindcss": "^1.6.2",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.7"
-  }
+    "@testing-library/jest-dom": "5.x",
+    "@testing-library/react": "11.0.4",
+    "@testing-library/react-hooks": "3.4.2",
+    "@types/jest": "26.x",
+    "@types/react": "16.9.49",
+    "@types/secure-password": "3.1.0",
+    "@typescript-eslint/eslint-plugin": "4.x",
+    "@typescript-eslint/parser": "4.x",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.10.0",
+    "eslint-config-react-app": "5.2.1",
+    "eslint-plugin-flowtype": "5.2.0",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-react": "7.21.2",
+    "eslint-plugin-react-hooks": "4.1.2",
+    "husky": "4.x",
+    "jest": "26.4.2",
+    "jest-environment-jsdom-fourteen": "1.x",
+    "jest-watch-typeahead": "0.6.1",
+    "react-test-renderer": "16.x",
+    "lint-staged": "10.x",
+    "prettier": "2.1.2",
+    "pretty-quick": "3.x",
+    "typescript": "4.x",
+    "ts-jest": "26.x"
+  },
+  "private": true
 }
