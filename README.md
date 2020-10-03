@@ -8,7 +8,18 @@
 
 Work in progress. Stay tuned.
 
-<<<<<<< HEAD
+## Savant Principles
+
+_Work in progress._
+
+1. Savant is **just a tool**. You use the tool. The tool doesn't use you.
+2. ...
+
+### What influenced Savant?
+
+- Foam's [Principles](https://foambubble.github.io/foam/principles)
+- MyMind's [manifesto](https://mymind.com/) and ["Private First"](https://mymind.com/private-first) blog post.
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -29,16 +40,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-=======
-## Savant Principles
-
-_Work in progress._
-
-1. Savant is **just a tool**. You use the tool. The tool doesn't use you.
-2. ...
-
-### What influenced Savant?
-
-- Foam's [Principles](https://foambubble.github.io/foam/principles)
-- MyMind's [manifesto](https://mymind.com/) and ["Private First"](https://mymind.com/private-first) blog post.
->>>>>>> Add Monaco Editor
