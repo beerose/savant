@@ -1,10 +1,14 @@
 const type = "SavantPaneResizeEvent";
 
-export const SavantPaneResizeEvent = {
-  addEventListener(listener: (event: Event) => void) {
-    window.addEventListener(type, listener);
+interface SavantPaneResizeEvent extends Event {
+  type: typeof type;
+}
 
-    return () => window.removeEventListener(type, listener);
+export const SavantPaneResizeEvent = {
+  addEventListener(listener: (event: SavantPaneResizeEvent) => void) {
+    window.addEventListener(type, listener as EventListener);
+
+    return () => window.removeEventListener(type, listener as EventListener);
   },
 
   dispatch() {

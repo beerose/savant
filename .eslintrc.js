@@ -12,5 +12,7 @@ module.exports = {
     //Doesn't play well with Blitz/Next <Link> usage
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/accessible-emoji": "off",
+    // TypeScript takes care of this
+    "no-redeclare": "off",
   },
 };
