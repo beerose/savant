@@ -1,8 +1,16 @@
 {
-  "extends": "../../tsconfig.options.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@tsconfig/recommended",
   "compilerOptions": {
-    "composite": true,
-    "outDir": "../../dist/app"
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "noEmit": false,
+    "allowJs": false
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

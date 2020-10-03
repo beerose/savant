@@ -31,6 +31,7 @@
     "./packages/*"
   ],
   "dependencies": {
+    "@tsconfig/recommended": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "4.x",
     "@typescript-eslint/parser": "4.x",
     "babel-eslint": "10.1.0",
