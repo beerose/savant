@@ -3,5 +3,6 @@
   "compilerOptions": {
     "strict": true
   },
-  "references": [{ "path": "./packages/app" }]
+  "references": [{ "path": "./packages/app" }],
+  "files": []
 }
