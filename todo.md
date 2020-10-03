@@ -1,8 +1,8 @@
 # Proof of Concept
 
-- [ ] add Handsontable @Aleksandra
-- [ ] add Monaco @Piotr
-- [ ] wire them together
+- [x] add Handsontable @Aleksandra
+- [x] add Monaco @Piotr
+- [ ] wire them together @Aleksandra, @Piotr
 
 # Workspace Chores
 
@@ -10,6 +10,14 @@
 
 # Backlog
 
+- [ ] Make sure the app looks slick
+- [ ] Add formulas supports
+- [ ] Write usage docs
+- [ ] Write a proper Manifesto
+- [ ] Write contributing doks
+- [ ] Tease and publish sneak-peeks on Twitter @Aleksandra
+- [ ] Build hype on Twitter again @Aleksandra
+- [ ] Release on ProductHunt
 - [ ] Dark mode
 - [ ] Plugins
 

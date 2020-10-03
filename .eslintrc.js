@@ -11,5 +11,6 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     //Doesn't play well with Blitz/Next <Link> usage
     "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/accessible-emoji": "off",
   },
-}
+};
