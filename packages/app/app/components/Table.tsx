@@ -12,6 +12,7 @@ const Table = () => {
   return (
     <div id="hot-app">
       <HotTable
+        licenseKey="non-commercial-and-evaluation"
         data={data}
         colHeaders={true}
         rowHeaders={true}

@@ -77,19 +77,11 @@ const Home: BlitzPage = () => {
           </a>
           <a
             className="button-outline"
-            href="https://github.com/blitz-js/blitz"
+            href="https://github.com/beerose/savant"
             target="_blank"
             rel="noopener noreferrer"
           >
             Github Repo
-          </a>
-          <a
-            className="button-outline"
-            href="https://slack.blitzjs.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Slack Community
           </a>
         </div>
       </main>
