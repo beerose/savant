@@ -17,6 +17,7 @@
     "schema": "db/schema.prisma"
   },
   "dependencies": {
+    "@adobe/react-spectrum": "3.4.0",
     "@handsontable/react": "4.0.0",
     "@prisma/cli": "2.x",
     "@prisma/client": "2.x",
