@@ -37,7 +37,7 @@
     "blitz": "latest",
     "final-form": "4.x",
     "handsontable": "8.1.0",
-    "react": "0.0.0-experimental-7f28234f8",
+    "react": "0.14.0",
     "react-dom": "0.0.0-experimental-7f28234f8",
     "react-error-boundary": "2.3.2",
     "react-final-form": "6.5.1",
