@@ -3,14 +3,15 @@
 const {
   sessionMiddleware,
   unstable_simpleRolesIsAuthorized,
-} = require('@blitzjs/server');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+} = require("@blitzjs/server");
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+const withTranspiledModules = require("next-transpile-modules");
 
 /**
  * `pirates` breaks `css-loader`
  * @see https://github.com/webpack/webpack/issues/1754#issuecomment-547750308
  */
-require.extensions['.css'] = () => {
+require.extensions[".css"] = () => {
   return;
 };
 
@@ -54,7 +55,7 @@ function appendCSSPath(config, newCssPath) {
      * @returns {rsc is RuleSetConditionObject }
      */
     const isRuleSetConditionObject = (rsc) =>
-      typeof rsc === 'object' && !('test' in rsc) && !Array.isArray(rsc);
+      typeof rsc === "object" && !("test" in rsc) && !Array.isArray(rsc);
 
     _cssRule = config.module.rules
       .find((rule) => rule.oneOf)
@@ -66,6 +67,7 @@ function appendCSSPath(config, newCssPath) {
          */
         (r) => {
           if (
+            r &&
             r.test &&
             r.test.toString() === /(?<!\.module)\.css$/.toString()
           ) {
@@ -75,7 +77,7 @@ function appendCSSPath(config, newCssPath) {
             const paths = r.issuer.and || r.issuer.include;
             if (
               Array.isArray(paths) &&
-              paths.some((s) => typeof s === 'string' && s.includes('_app'))
+              paths.some((s) => typeof s === "string" && s.includes("_app"))
             ) {
               return true;
             }
@@ -85,11 +87,13 @@ function appendCSSPath(config, newCssPath) {
       );
   }
 
-  // hack
-  const paths = _cssRule.issuer.and || _cssRule.issuer.include;
-  _cssRule.issuer = {
-    include: union(/** @type {RuleSetConditions} */ (paths), newCssPath),
-  };
+  if (_cssRule) {
+    // hack
+    const paths = _cssRule.issuer.and || _cssRule.issuer.include;
+    _cssRule.issuer = {
+      include: union(/** @type {RuleSetConditions} */ (paths), newCssPath),
+    };
+  }
 
   return _cssRule;
 }
@@ -106,13 +110,19 @@ function configureMonaco(config) {
 
   config.plugins.push(
     new MonacoWebpackPlugin({
-      languages: ['json', 'markdown', 'typescript'],
-      filename: 'static/[name].worker.js',
+      languages: ["json", "markdown", "typescript"],
+      filename: "static/[name].worker.js",
     })
   );
 }
 
-module.exports = () => ({
+// TODO: Copy withTranspiledModules source to the bottom of this file and debug it
+// We're getting "Global CSS cannot be imported from files other than your Custom <App>."
+// but it should be disabled by `withTranspiledModules`
+module.exports = withTranspiledModules([
+  "@spectrum-icons/.*",
+  "@react-spectrum/.*",
+])(() => ({
   middleware: [
     sessionMiddleware({
       unstable_isAuthorized: unstable_simpleRolesIsAuthorized,
@@ -125,11 +135,11 @@ module.exports = () => ({
     configureMonaco(config);
 
     appendCSSPath(config, [
-      /[\\/]node_modules[\\/]@adobe\/react-spectrum[\\/]/,
+      // /[\\/]node_modules[\\/]@adobe\/react-spectrum[\\/]/,
       /[\\/]node_modules[\\/]@react-spectrum[\\/]/,
       /[\\/]node_modules[\\/]handsontable[\\/]/,
     ]);
 
     return config;
   },
-});
+}));

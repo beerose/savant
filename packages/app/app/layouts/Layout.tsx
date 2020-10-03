@@ -1,10 +1,10 @@
-import { ReactNode } from "react"
-import { Head } from "blitz"
+import { ReactNode } from "react";
+import { Head } from "blitz";
 
 type LayoutProps = {
-  title?: string
-  children: ReactNode
-}
+  title?: string;
+  children: ReactNode;
+};
 
 const Layout = ({ title, children }: LayoutProps) => {
   return (
@@ -13,10 +13,22 @@ const Layout = ({ title, children }: LayoutProps) => {
         <title>{title || "savant"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div id="root">{children}</div>
+      <style jsx>
+        {`
+          #root {
+            position: absolute;
+            top: 0;
+            left 0;
+            width: 100vw;
+            height: 100vh;
 
-      {children}
+            display: flex;
+          }
+        `}
+      </style>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

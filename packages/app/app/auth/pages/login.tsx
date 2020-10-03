@@ -1,18 +1,17 @@
-import React from "react"
-import { useRouter, BlitzPage } from "blitz"
-import Layout from "app/layouts/Layout"
-import { LoginForm } from "app/auth/components/LoginForm"
+import React from "react";
+import { useRouter, BlitzPage } from "blitz";
+
+import Layout from "../../layouts/Layout";
+import LoginForm from "../components/LoginForm";
 
 const LoginPage: BlitzPage = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
-    <div>
+    <Layout title="Log In">
       <LoginForm onSuccess={() => router.push("/")} />
-    </div>
-  )
-}
+    </Layout>
+  );
+};
 
-LoginPage.getLayout = (page) => <Layout title="Log In">{page}</Layout>
-
-export default LoginPage
+export default LoginPage;

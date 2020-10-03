@@ -17,6 +17,7 @@ _Work in progress._
 
 ### What influenced Savant?
 
+- ["Org as a spreadsheet system"](https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html)
 - Foam's [Principles](https://foambubble.github.io/foam/principles)
 - MyMind's [manifesto](https://mymind.com/) and ["Private First"](https://mymind.com/private-first) blog post.
 
