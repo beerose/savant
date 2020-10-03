@@ -1,16 +1,20 @@
-import { Link, BlitzPage } from "blitz"
-import Layout from "app/layouts/Layout"
-import logout from "app/auth/mutations/logout"
-import { useCurrentUser } from "app/hooks/useCurrentUser"
-import { Suspense } from "react"
+import { Link, BlitzPage } from "blitz";
+import Layout from "app/layouts/Layout";
+import logout from "app/auth/mutations/logout";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
+const TableNoSSR = dynamic(() => import("../components/Table"), {
+  ssr: false,
+});
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
  */
 
 const UserInfo = () => {
-  const currentUser = useCurrentUser()
+  const currentUser = useCurrentUser();
 
   if (currentUser) {
     return (
@@ -18,7 +22,7 @@ const UserInfo = () => {
         <button
           className="button small"
           onClick={async () => {
-            await logout()
+            await logout();
           }}
         >
           Logout
@@ -29,7 +33,7 @@ const UserInfo = () => {
           User role: <code>{currentUser.role}</code>
         </div>
       </>
-    )
+    );
   } else {
     return (
       <>
@@ -44,44 +48,24 @@ const UserInfo = () => {
           </a>
         </Link>
       </>
-    )
+    );
   }
-}
+};
 
 const Home: BlitzPage = () => {
   return (
     <div className="container">
       <main>
-        <div className="logo">
-          <img src="/logo.png" alt="blitz.js" />
-        </div>
-        <p>
-          <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
-        </p>
-        <div className="buttons" style={{ marginTop: "1rem", marginBottom: "5rem" }}>
+        <div
+          className="buttons"
+          style={{ marginTop: "1rem", marginBottom: "5rem" }}
+        >
           <Suspense fallback="Loading...">
             <UserInfo />
           </Suspense>
         </div>
-        <p>
-          <strong>
-            To add a new model to your app, <br />
-            run the following in your terminal:
-          </strong>
-        </p>
-        <pre>
-          <code>blitz generate all project name:string</code>
-        </pre>
-        <pre>
-          <code>blitz db migrate</code>
-        </pre>
 
-        <p>
-          Then go to{" "}
-          <Link href="/projects">
-            <a>/projects</a>
-          </Link>
-        </p>
+        <TableNoSSR />
         <div className="buttons" style={{ marginTop: "5rem" }}>
           <a
             className="button"
@@ -111,13 +95,10 @@ const Home: BlitzPage = () => {
       </main>
 
       <footer>
-        <a
-          href="https://blitzjs.com?utm_source=blitz-new&utm_medium=app-template&utm_campaign=blitz-new"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by Blitz.js
-        </a>
+        <p>
+          Made with love by <a href="twitter.com/aleksandrasays">Aleksandra</a>{" "}
+          and <a href="twitter.com/hasparus">Piotr</a>.
+        </p>
       </footer>
 
       <style jsx global>{`
@@ -127,8 +108,9 @@ const Home: BlitzPage = () => {
         body {
           padding: 0;
           margin: 0;
-          font-family: "Libre Franklin", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+          font-family: "Libre Franklin", -apple-system, BlinkMacSystemFont,
+            Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+            Helvetica Neue, sans-serif;
         }
 
         * {
@@ -169,17 +151,11 @@ const Home: BlitzPage = () => {
           justify-content: center;
           align-items: center;
           background-color: #45009d;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          color: white;
         }
 
         footer a {
           color: #f4f4f4;
-          text-decoration: none;
         }
 
         .logo {
@@ -230,8 +206,8 @@ const Home: BlitzPage = () => {
         }
         code {
           font-size: 0.9rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-            Bitstream Vera Sans Mono, Courier New, monospace;
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
 
         .grid {
@@ -252,9 +228,9 @@ const Home: BlitzPage = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
+Home.getLayout = (page) => <Layout title="Home">{page}</Layout>;
 
-export default Home
+export default Home;

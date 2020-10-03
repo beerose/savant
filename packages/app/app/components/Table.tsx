@@ -1,8 +1,7 @@
 import React from "react";
 import { HotTable } from "@handsontable/react";
-import "handsontable/dist/handsontable.full.css";
 
-export const Table = () => {
+const Table = () => {
   const data = [
     ["", "Ford", "Volvo", "Toyota", "Honda"],
     ["2016", 10, 11, 12, 13],
@@ -22,3 +21,5 @@ export const Table = () => {
     </div>
   );
 };
+
+export default Table;
