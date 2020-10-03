@@ -1,6 +1,7 @@
 {
-  "name": "savant",
-  "version": "1.0.0",
+  "name": "@savant/app",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
     "start": "blitz start",
     "studio": "blitz db studio",
@@ -14,21 +15,6 @@
   ],
   "prisma": {
     "schema": "db/schema.prisma"
-  },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc && lint-staged && pretty-quick --staged",
-      "pre-push": "yarn lint && yarn test"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix"
-    ]
   },
   "dependencies": {
     "@handsontable/react": "4.0.0",
@@ -51,16 +37,6 @@
     "@types/jest": "26.x",
     "@types/react": "16.9.49",
     "@types/secure-password": "3.1.0",
-    "@typescript-eslint/eslint-plugin": "4.x",
-    "@typescript-eslint/parser": "4.x",
-    "babel-eslint": "10.1.0",
-    "eslint": "7.10.0",
-    "eslint-config-react-app": "5.2.1",
-    "eslint-plugin-flowtype": "5.2.0",
-    "eslint-plugin-import": "2.x",
-    "eslint-plugin-jsx-a11y": "6.3.1",
-    "eslint-plugin-react": "7.21.2",
-    "eslint-plugin-react-hooks": "4.1.2",
     "husky": "4.x",
     "jest": "26.4.2",
     "jest-environment-jsdom-fourteen": "1.x",
@@ -71,6 +47,5 @@
     "react-test-renderer": "16.x",
     "ts-jest": "26.x",
     "typescript": "4.x"
-  },
-  "private": true
+  }
 }

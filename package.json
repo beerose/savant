@@ -1,0 +1,45 @@
+{
+  "name": "@savant/monorepo",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "monorepo for savant packages",
+  "repository": "git@github.com:beerose/savant.git",
+  "contributors": [
+    "beerose <alexsandra.sikora@gmail.com>",
+    "hasparus <hasparus@gmail.com>"
+  ],
+  "private": true,
+  "scripts": {
+    "start": "yarn workspace @savant/app start",
+    "studio": "yarn workspace @savant/app studio",
+    "build": "lerna run build",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "test": "lerna run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc && lint-staged && pretty-quick --staged",
+      "pre-push": "yarn lint && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "workspaces": [
+    "./packages/*"
+  ],
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "4.x",
+    "@typescript-eslint/parser": "4.x",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.10.0",
+    "eslint-config-react-app": "5.2.1",
+    "eslint-plugin-flowtype": "5.2.0",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-react": "7.21.2",
+    "eslint-plugin-react-hooks": "4.1.2"
+  }
+}
