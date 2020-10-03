@@ -5,6 +5,7 @@
   "scripts": {
     "start": "blitz start",
     "dev": "blitz start",
+    "debug": "NODE_OPTIONS='--inspect-brk=127.0.0.1:3000' blitz start",
     "studio": "blitz db studio",
     "build": "blitz build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",

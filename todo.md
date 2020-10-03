@@ -10,6 +10,8 @@
 
 # Backlog
 
+- [ ] Create issue about old CSS in @adobe/react-spectrum
+- [ ] Create issue about old React APIs in react-handsontable
 - [ ] Make sure the app looks slick
 - [ ] Add formulas supports
 - [ ] Write usage docs
