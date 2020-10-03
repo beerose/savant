@@ -10,6 +10,7 @@
   ],
   "private": true,
   "scripts": {
+    "app": "yarn workspace @savant/app",
     "start": "yarn workspace @savant/app start",
     "studio": "yarn workspace @savant/app studio",
     "build": "lerna run build",
@@ -20,7 +21,9 @@
   "husky": {
     "hooks": {
       "pre-commit": "tsc && lint-staged && pretty-quick --staged",
-      "pre-push": "yarn lint && yarn test"
+      "pre-push": "yarn lint && yarn test",
+      "post-merge": "post-merge-install",
+      "post-rebase": "post-merge-install"
     }
   },
   "lint-staged": {
@@ -46,6 +49,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.10.3",
-    "all-contributors-cli": "^6.17.4"
+    "all-contributors-cli": "^6.17.4",
+    "post-merge-install": "^0.4.0"
   }
 }

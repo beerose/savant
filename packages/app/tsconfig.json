@@ -3,6 +3,7 @@
   "extends": "@tsconfig/recommended",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": true,
     "module": "esnext",
     "baseUrl": "./",
     "moduleResolution": "node",
