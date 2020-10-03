@@ -1,11 +1,11 @@
 import { Link, BlitzPage } from "blitz";
 import Layout from "app/layouts/Layout";
 import logout from "app/auth/mutations/logout";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/users/useCurrentUser";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
-const TableNoSSR = dynamic(() => import("../components/Table"), {
+const TableNoSSR = dynamic(() => import("../reusable-ui/Table"), {
   ssr: false,
 });
 /*

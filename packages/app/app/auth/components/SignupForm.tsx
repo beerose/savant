@@ -1,6 +1,6 @@
 import React from "react"
-import { LabeledTextField } from "app/components/LabeledTextField"
-import { Form, FORM_ERROR } from "app/components/Form"
+import { LabeledTextField } from "app/reusable-ui/LabeledTextField"
+import { Form, FORM_ERROR } from "app/reusable-ui/Form"
 import signup from "app/auth/mutations/signup"
 import { SignupInput, SignupInputType } from "app/auth/validations"
 

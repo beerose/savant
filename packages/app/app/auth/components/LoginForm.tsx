@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "blitz"
-import { LabeledTextField } from "app/components/LabeledTextField"
-import { Form, FORM_ERROR } from "app/components/Form"
+import { LabeledTextField } from "app/reusable-ui/LabeledTextField"
+import { Form, FORM_ERROR } from "app/reusable-ui/Form"
 import login from "app/auth/mutations/login"
 import { LoginInput, LoginInputType } from "app/auth/validations"
 
