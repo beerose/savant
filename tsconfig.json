@@ -1,8 +1,16 @@
 {
-  "extends": "./tsconfig.options.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@tsconfig/recommended",
   "compilerOptions": {
-    "strict": true
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
   },
-  "references": [{ "path": "./packages/app" }],
-  "files": []
+  "files": [],
+  "references": [{ "path": "./packages/app" }]
 }
