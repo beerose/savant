@@ -10,7 +10,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "noEmit": false,
-    "allowJs": false
+    "allowJs": false,
+    "outDir": "../../dist/app"
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

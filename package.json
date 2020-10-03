@@ -14,7 +14,8 @@
     "studio": "yarn workspace @savant/app studio",
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "tsc:build": "tsc -b"
   },
   "husky": {
     "hooks": {
