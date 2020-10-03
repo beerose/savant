@@ -2,9 +2,10 @@ import React from "react";
 import { render } from "test/utils";
 
 import LandingPage from "./index";
-import { useCurrentUser } from "app/users/useCurrentUser";
 
+import { useCurrentUser } from "app/users/useCurrentUser";
 jest.mock("app/users/useCurrentUser");
+
 const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<
   typeof useCurrentUser
 >;

@@ -16,7 +16,9 @@
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "lerna run test",
-    "tsc:build": "tsc -b"
+    "tsc:build": "tsc -b",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "husky": {
     "hooks": {

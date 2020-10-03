@@ -34,6 +34,7 @@
     "blitz": "latest",
     "final-form": "4.x",
     "handsontable": "8.1.0",
+    "identity-obj-proxy": "3.0.0",
     "monaco-editor-webpack-plugin": "2.0.0",
     "next-transpile-modules": "4.1.0",
     "react": "0.0.0-experimental-7f28234f8",

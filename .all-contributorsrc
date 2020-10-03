@@ -4,7 +4,7 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
-    "../../README.md"
+    "./README.md"
   ],
   "imageSize": 200,
   "commit": true,
@@ -16,13 +16,8 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/9019397?v=4",
       "profile": "https://github.com/beerose",
       "contributions": [
-        "question",
         "code",
-        "design",
-        "doc",
-        "example",
-        "ideas",
-        "review"
+        "ideas"
       ]
     },
     {
@@ -31,12 +26,8 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/15332326?v=4",
       "profile": "https://haspar.us/",
       "contributions": [
-        "question",
         "code",
-        "design",
-        "doc",
-        "ideas",
-        "review"
+        "ideas"
       ]
     }
   ],
