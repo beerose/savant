@@ -68,7 +68,7 @@ const Home: BlitzPage = () => {
           </Suspense>
         </div> */}
 
-        <SplitPane split="vertical" minSize={30}>
+        <SplitPane split="vertical" minSize="50%">
           <Spreadsheet />
           <Editor value={editorValue} onChange={setEditorValue} />
         </SplitPane>
@@ -82,6 +82,13 @@ const Home: BlitzPage = () => {
       {/* split pane styles */}
       <style jsx global>
         {`
+          footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+          }
+
           .Resizer {
             --dragbarColor: rgba(0, 0, 0, 0.1);
             --dragbarHoveredColor: rgba(0, 0, 0, 0.5);
