@@ -4,7 +4,7 @@ export * from "@prisma/client";
 let prisma: PrismaClient;
 
 declare module globalThis {
-  export var prisma: PrismaClient | undefined;
+  export var prismaClient: PrismaClient | undefined;
 }
 
 if (process.env.NODE_ENV === "production") {
@@ -12,8 +12,8 @@ if (process.env.NODE_ENV === "production") {
 } else {
   // Ensure the prisma instance is re-used during hot-reloading
   // Otherwise, a new client will be created on every reload
-  globalThis["prisma"] = globalThis["prisma"] || new PrismaClient();
-  prisma = globalThis["prisma"];
+  globalThis.prismaClient = globalThis.prismaClient || new PrismaClient();
+  prisma = globalThis.prismaClient;
 }
 
 export default prisma;
