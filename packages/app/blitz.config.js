@@ -243,7 +243,6 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
     const excludes = generateExcludes(transpileModules);
 
     const hasInclude = (ctx, req) => {
-      debugger;
       return includes.find((include) =>
         req.startsWith(".")
           ? include.test(path.resolve(ctx, req))
@@ -368,9 +367,6 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
               );
             }
           });
-
-          inspect(bothGlobalCssErrorLoaders);
-          debugger;
         }
 
         // Overload the Webpack config if it was already overloaded

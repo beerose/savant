@@ -55,7 +55,12 @@ const UserInfo = () => {
 const LandingPage: BlitzPage = () => {
   return (
     <Layout title="Savant">
-      <View elementType="main" padding="size-500" flex={1}>
+      <View
+        elementType="main"
+        padding="size-500"
+        flex={1}
+        flexDirection="column"
+      >
         <Flex direction="column" gap="size-100">
           <div>
             <Suspense fallback="Loading...">
