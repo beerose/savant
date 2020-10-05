@@ -16,7 +16,9 @@
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "lerna run test",
-    "tsc:build": "tsc -b"
+    "tsc:build": "tsc -b",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "husky": {
     "hooks": {
@@ -42,7 +44,7 @@
     "eslint": "7.10.0",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-flowtype": "5.2.0",
-    "eslint-plugin-import": "2.x",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.21.2",
     "eslint-plugin-react-hooks": "4.1.2"
