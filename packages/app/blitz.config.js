@@ -3,14 +3,14 @@
 const {
   sessionMiddleware,
   unstable_simpleRolesIsAuthorized,
-} = require("@blitzjs/server");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+} = require('@blitzjs/server');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 /**
  * `pirates` breaks `css-loader`
  * @see https://github.com/webpack/webpack/issues/1754#issuecomment-547750308
  */
-require.extensions[".css"] = () => {
+require.extensions['.css'] = () => {
   return;
 };
 
@@ -39,6 +39,37 @@ const union = (arr1, arr2) => {
  */
 
 /**
+ * @param {RuleSetCondition} r
+ */
+const findRuleDFS = (r) => {
+  if (typeof r === 'string') {
+    return r.includes('_app');
+  }
+  if (Array.isArray(r)) {
+    return r.some(findRuleDFS);
+  }
+  if ('test' in r && r.test) {
+    return findRuleDFS(r.test);
+  }
+  if ('and' in r && r.and) {
+    return findRuleDFS(r.and);
+  }
+  if ('exclude' in r && r.exclude) {
+    return findRuleDFS(r.exclude);
+  }
+  if ('include' in r && r.include) {
+    return findRuleDFS(r.include);
+  }
+  if ('not' in r && r.not) {
+    return findRuleDFS(r.not);
+  }
+  if ('or' in r && r.or) {
+    return findRuleDFS(r.or);
+  }
+  return false;
+};
+
+/**
  * @type {{ issuer: RuleSetConditionObject }}
  */
 let _cssRule;
@@ -51,17 +82,15 @@ function appendCSSPath(config, newCssPath) {
   if (!_cssRule) {
     /**
      * @param {RuleSetCondition} rsc
-     * @returns {rsc is RuleSetConditionObject }
+     * @returns {rsc is RuleSetConditionObject}
      */
     const isRuleSetConditionObject = (rsc) =>
-      typeof rsc === "object" && !("test" in rsc) && !Array.isArray(rsc);
+      typeof rsc === 'object' && !('test' in rsc) && !Array.isArray(rsc);
 
     _cssRule = config.module.rules
       .find((rule) => rule.oneOf)
       .oneOf.find(
         /**
-         * @hack r is recursive and until we write DFS this code can crash on every nextjs or blitzjs update
-         *
          * @returns {r is { issuer: RuleSetConditionObject }}
          */
         (r) => {
@@ -73,13 +102,7 @@ function appendCSSPath(config, newCssPath) {
             if (!r.issuer || !isRuleSetConditionObject(r.issuer)) {
               return false;
             }
-            const paths = r.issuer.and || r.issuer.include;
-            if (
-              Array.isArray(paths) &&
-              paths.some((s) => typeof s === "string" && s.includes("_app"))
-            ) {
-              return true;
-            }
+            return findRuleDFS(r.issuer);
           }
           return false;
         }
@@ -109,8 +132,8 @@ function configureMonaco(config) {
 
   config.plugins.push(
     new MonacoWebpackPlugin({
-      languages: ["json", "markdown", "typescript"],
-      filename: "static/[name].worker.js",
+      languages: ['json', 'markdown', 'typescript'],
+      filename: 'static/[name].worker.js',
     })
   );
 }
@@ -119,8 +142,8 @@ function configureMonaco(config) {
 // We're getting "Global CSS cannot be imported from files other than your Custom <App>."
 // but it should be disabled by `withTranspiledModules`
 module.exports = withTranspiledModules([
-  "@spectrum-icons/.*",
-  "@react-spectrum/.*",
+  '@spectrum-icons/.*',
+  '@react-spectrum/.*',
 ])({
   middleware: [
     sessionMiddleware({
@@ -130,11 +153,10 @@ module.exports = withTranspiledModules([
   /**
    * @param {Configuration} config
    */
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config) => {
     configureMonaco(config);
 
     appendCSSPath(config, [
-      // /[\\/]node_modules[\\/]@adobe\/react-spectrum[\\/]/,
       /[\\/]node_modules[\\/]@react-spectrum[\\/]/,
       /[\\/]node_modules[\\/]handsontable[\\/]/,
     ]);
@@ -147,8 +169,8 @@ module.exports = withTranspiledModules([
 
 // Stolen from next-transpile-modules and adapted.
 
-const path = require("path");
-var PATH_DELIMITER = "[\\\\/]"; // match 2 antislashes or one slash
+const path = require('path');
+var PATH_DELIMITER = '[\\\\/]'; // match 2 antislashes or one slash
 
 /**
  * Use me when needed
@@ -202,11 +224,11 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
    */
   const generateIncludes = (modules) => {
     return [
-      new RegExp(`(${modules.map(safePath).join("|")})$`),
+      new RegExp(`(${modules.map(safePath).join('|')})$`),
       new RegExp(
         `(${modules
           .map(safePath)
-          .join("|")})${PATH_DELIMITER}(?!.*node_modules)`
+          .join('|')})${PATH_DELIMITER}(?!.*node_modules)`
       ),
     ];
   };
@@ -219,7 +241,7 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
       new RegExp(
         `node_modules${PATH_DELIMITER}(?!(${modules
           .map(safePath)
-          .join("|")})(${PATH_DELIMITER}|$)(?!.*node_modules))`
+          .join('|')})(${PATH_DELIMITER}|$)(?!.*node_modules))`
       ),
     ];
   };
@@ -244,7 +266,7 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
 
     const hasInclude = (ctx, req) => {
       return includes.find((include) =>
-        req.startsWith(".")
+        req.startsWith('.')
           ? include.test(path.resolve(ctx, req))
           : include.test(req)
       );
@@ -255,7 +277,7 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
         // Safecheck for Next < 5.0
         if (!options.defaultLoaders) {
           throw new Error(
-            "This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade"
+            'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade'
           );
         }
 
@@ -268,7 +290,7 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
         // Since Next.js 8.1.0, config.externals is undefined
         if (config.externals) {
           config.externals = config.externals.map((external) => {
-            if (typeof external !== "function") return external;
+            if (typeof external !== 'function') return external;
 
             return isWebpack5
               ? ({ context, request }, cb) => {
@@ -299,7 +321,7 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
 
         // Support CSS modules + global in node_modules
         const nextCssLoaders = config.module.rules.find(
-          (rule) => typeof rule.oneOf === "object"
+          (rule) => typeof rule.oneOf === 'object'
         );
 
         // .module.css
@@ -336,13 +358,13 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
           const nextErrorCssModuleLoader = nextCssLoaders.oneOf.find(
             (rule) =>
               rule.use &&
-              rule.use.loader === "error-loader" &&
+              rule.use.loader === 'error-loader' &&
               rule.use.options &&
               (rule.use.options.reason ===
-                "CSS Modules \u001b[1mcannot\u001b[22m be imported from within \u001b[1mnode_modules\u001b[22m.\n" +
-                  "Read more: https://err.sh/next.js/css-modules-npm" ||
+                'CSS Modules \u001b[1mcannot\u001b[22m be imported from within \u001b[1mnode_modules\u001b[22m.\n' +
+                  'Read more: https://err.sh/next.js/css-modules-npm' ||
                 rule.use.options.reason ===
-                  "CSS Modules cannot be imported from within node_modules.\nRead more: https://err.sh/next.js/css-modules-npm")
+                  'CSS Modules cannot be imported from within node_modules.\nRead more: https://err.sh/next.js/css-modules-npm')
           );
 
           if (nextErrorCssModuleLoader) {
@@ -352,10 +374,10 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
           const bothGlobalCssErrorLoaders = nextCssLoaders.oneOf.filter(
             (rule) =>
               rule.use &&
-              rule.use.loader === "error-loader" &&
+              rule.use.loader === 'error-loader' &&
               rule.use.options &&
-              typeof rule.use.options.reason === "string" &&
-              rule.use.options.reason.startsWith("Global CSS")
+              typeof rule.use.options.reason === 'string' &&
+              rule.use.options.reason.startsWith('Global CSS')
           );
 
           bothGlobalCssErrorLoaders.forEach((rule) => {
@@ -363,14 +385,14 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
               rule.exclude = includes;
             } else {
               throw new Error(
-                "invalid assumption! `rule.exclude` was empty when this code was written"
+                'invalid assumption! `rule.exclude` was empty when this code was written'
               );
             }
           });
         }
 
         // Overload the Webpack config if it was already overloaded
-        if (typeof blitzConfig.webpack === "function") {
+        if (typeof blitzConfig.webpack === 'function') {
           return blitzConfig.webpack(config, options);
         }
 
@@ -390,13 +412,13 @@ function withTranspiledModules(transpileModules = [], tmOptions = {}) {
               .filter(
                 (pattern) =>
                   !regexEqual(pattern, /[\\/]node_modules[\\/]/) &&
-                  pattern !== "**/node_modules/**"
+                  pattern !== '**/node_modules/**'
               )
               .concat(excludes);
 
         config.watchOptions.ignored = ignored;
 
-        if (typeof blitzConfig.webpackDevMiddleware === "function") {
+        if (typeof blitzConfig.webpackDevMiddleware === 'function') {
           return blitzConfig.webpackDevMiddleware(config);
         }
 
